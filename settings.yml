@@ -3,7 +3,6 @@ general:
     instance_name : "searx" # displayed name
     contact_url: False # mailto:contact@example.com
     enable_stats: True # activate /stats page - note: it may leak usage data
-
 brand:
     git_url: https://github.com/searx/searx
     git_branch: master
@@ -11,15 +10,14 @@ brand:
     docs_url: https://searx.github.io/searx
     public_instances: https://searx.space
     wiki_url: https://github.com/searx/searx/wiki
+    
     twitter_url: https://twitter.com/Searx_engine
-
 search:
     safe_search: 0 # Filter results. 0: None, 1: Moderate, 2: Strict
     autocomplete: "google" # Existing autocomplete backends: "dbpedia", "duckduckgo", "google", "startpage", "swisscows", "qwant", "wikipedia" - leave blank to turn it off by default
     default_lang: "" # Default search language - leave blank to detect from browser information or use codes from 'languages.py'
     ban_time_on_fail: 5 # ban time in seconds after engine errors
     max_ban_time_on_fail: 120 # max ban time in seconds after engine errors
-
 server:
     port: 8888
     bind_address: "127.0.0.1" # address to listen on
@@ -34,7 +32,6 @@ server:
       X-Download-Options: noopen
       X-Robots-Tag: noindex, nofollow
       Referrer-Policy: no-referrer
-
 ui:
     static_path: "" # Custom static path - leave it blank if you didn't change
     templates_path: "" # Custom templates path - leave it blank if you didn't change
@@ -43,7 +40,6 @@ ui:
     results_on_new_tab: False # Open result links in a new tab by default
     theme_args:
         oscar_style: logicodev-dark # default style of oscar
-
 outgoing: # communication with search engines
     request_timeout: 3.0 # default timeout in seconds, can be override by engine
     # max_request_timeout: 10.0 # the maximum timeout in seconds
@@ -51,7 +47,6 @@ outgoing: # communication with search engines
     pool_connections: 100 # The maximum number of concurrent connections that may be established.
     pool_maxsize: 20 # Allow the connection pool to maintain keep-alive connections below this point.
     enable_http2: True  # See https://www.python-httpx.org/http2/
-
 enabled_plugins:
   - "HTTPS rewrite"
   - "Infinite scroll"
@@ -64,11 +59,9 @@ hostname_replace:
   '(.*\.)?reddit\.com$': "teddit.net"
   '(.*\.)?redd\.it$': "teddit.net"
   '(www\.)?twitter\.com$': "nitter.net"
-
 checker:
     # disable checker when in debug mode
     off_when_debug: True
-
     additional_tests:
       rosebud: &test_rosebud
         matrix:
@@ -79,7 +72,6 @@ checker:
           - ["one_title_contains", "citizen kane"]
         test:
           - unique_results
-
       android: &test_android
         matrix:
           query: ["android"]
@@ -98,14 +90,12 @@ checker:
             query: ["linux", "new york", "bbc"]
           result_container:
             - has_infobox
-
 engines:
   - name: apk mirror
     engine: apkmirror
     timeout: 4.0
     shortcut: apkm
-    disabled: True
-
+    disabled: False
 # Requires Tor
   - name: ahmia
     engine: ahmia
@@ -125,7 +115,7 @@ engines:
     content_xpath: //div[@class="TEXT-BLOCK"]/ul/li
     categories: general
     timeout: 7.0
-    disabled: True
+    disabled: False
     shortcut: ai
     soft_max_redirects: 1
     about:
@@ -150,22 +140,22 @@ engines:
   - name : bing
     engine : bing
     shortcut : bi
-    disabled: True
+    disabled: False
 
   - name : bing images
     engine : bing_images
     shortcut : bii
-    disabled: True
+    disabled: False
 
   - name : bing news
     engine : bing_news
     shortcut : bin
-    disabled: True
+    disabled: False
 
   - name : bing videos
     engine : bing_videos
     shortcut : biv
-    disabled: True
+    disabled: False
  
   - name: wikipedia
     engine: wikipedia
@@ -181,7 +171,7 @@ engines:
     title_xpath: //li//div[@class="mw-search-result-heading"]/a
     content_xpath: //li/div[@class="searchresult"]
     categories: general
-    disabled: True
+    disabled: False
     about:
       website: https://wikimini.org/
       wikidata_id: Q3568032
@@ -198,7 +188,7 @@ engines:
     content_xpath: //article[@class="repo-summary"]/p
     categories: it
     timeout: 4.0
-    disabled: True
+    disabled: False
     shortcut: bb
     about:
       website: https://bitbucket.org/
@@ -220,7 +210,7 @@ engines:
     title_xpath: //div[@class="caption"]/h3/a/text()
     content_xpath: //div[@class="caption"]/h4/@title
     categories: videos
-    disabled: True
+    disabled: False
     shortcut: c3tv
     about:
       website: https://media.ccc.de/
@@ -272,7 +262,7 @@ engines:
     engine: duckduckgo_definitions
     shortcut: ddd
     weight: 2
-    disabled: True
+    disabled: False
     tests: *tests_infobox
 
   - name: digg
@@ -290,7 +280,7 @@ engines:
     content_xpath: //dl[@class="results-list"]/dd[@class="result-details"]
     categories: general
     shortcut: ew
-    disabled: True
+    disabled: False
     about:
       website: https://www.erowid.org/
       wikidata_id: Q1430691
@@ -309,18 +299,18 @@ engines:
   - name: duckduckgo
     engine: duckduckgo
     shortcut: d
-    disabled: True
+    disabled: False
 
   - name: duckduckgo images
     engine: duckduckgo_images
     shortcut: di
     timeout: 3.0
-    disabled: True
+    disabled: False
 
   - name: etools
     engine: etools
     shortcut: eto
-    disabled: True
+    disabled: False
     additional_tests:
       rosebud: *test_rosebud
 
@@ -333,7 +323,7 @@ engines:
     content_xpath: //section[contains(@class, "word__defination")]
     first_page_num: 1
     shortcut: et
-    disabled: True
+    disabled: False
     about:
       website: https://www.etymonline.com/
       wikidata_id: Q1188617
@@ -346,12 +336,12 @@ engines:
     engine: www1x
     shortcut: 1x
     timeout: 3.0
-    disabled: True
+    disabled: False
 
   - name: fdroid
     engine: fdroid
     shortcut: fd
-    disabled: True
+    disabled: False
 
   - name: free software directory
     engine: mediawiki
@@ -359,11 +349,11 @@ engines:
     categories: it
     base_url: https://directory.fsf.org/
     number_of_results: 5
-# what part of a page matches the query string: title, text, nearmatch
+#what part of a page matches the query string: title, text, nearmatch
 # title - query matches title, text - query matches the text of page, nearmatch - nearmatch in title
     search_type: title
     timeout: 5.0
-    disabled: True
+    disabled: False
     about:
       website: https://directory.fsf.org/
       wikidata_id: Q2470288
@@ -371,7 +361,7 @@ engines:
   - name: frinkiac
     engine: frinkiac
     shortcut: frk
-    disabled: True
+    disabled: False
 
   - name: genius
     engine: genius
@@ -381,7 +371,7 @@ engines:
     engine: gigablast
     shortcut: gb
     timeout: 3.0
-    disabled: True
+    disabled: False
     additional_tests:
       rosebud: *test_rosebud
 
@@ -400,7 +390,7 @@ engines:
     categories: it
     shortcut: gl
     timeout: 10.0
-    disabled: True
+    disabled: False
     about:
       website: https://about.gitlab.com/
       wikidata_id: Q16639197
@@ -424,7 +414,7 @@ engines:
     content_query: description
     categories: it
     shortcut: cb
-    disabled: True
+    disabled: False
     about:
       website: https://codeberg.org/
       wikidata_id:
@@ -464,7 +454,7 @@ engines:
     thumbnail_xpath: './/div[@class="uzcko"]/div/span[1]//img/@data-src'
     categories: files
     shortcut: gpa
-    disabled: True
+    disabled: False
     about:
       website: https://play.google.com/
       wikidata_id: Q79576
@@ -484,7 +474,7 @@ engines:
     content_query: description
     page_size: 19
     categories: social media, files, general
-    disabled: True
+    disabled: False
     about:
       website: https://gpodder.net
       wikidata_id: Q3093354
@@ -503,7 +493,7 @@ engines:
     thumbnail_xpath: './/div[@class="uzcko"]/div/span[1]//img/@data-src'
     categories: videos
     shortcut: gpm
-    disabled: True
+    disabled: False
     about:
       website: https://play.google.com/
       wikidata_id: Q79576
@@ -521,7 +511,7 @@ engines:
     content_xpath: //article[contains(@class, "post")]//div[contains(@class, "post__text")]
     categories: it
     timeout: 4.0
-    disabled: True
+    disabled: False
     shortcut: gt
     about:
       website: https://geektimes.ru/
@@ -540,7 +530,7 @@ engines:
     content_xpath: //article[contains(@class, "post")]//div[contains(@class, "post__text")]
     categories: it
     timeout: 4.0
-    disabled: True
+    disabled: False
     shortcut: habr
     about:
       website: https://habr.com/
@@ -573,7 +563,7 @@ engines:
     engine: ina
     shortcut: in
     timeout: 6.0
-    disabled: True
+    disabled: False
 
   - name: invidious
     engine: invidious
@@ -582,13 +572,13 @@ engines:
       - https://invidious.snopyta.org/
     shortcut: iv
     timeout: 5.0
-    disabled: True
+    disabled: False
 
   - name: kickass
     engine: kickass
     shortcut: kc
     timeout: 4.0
-    disabled: True
+    disabled: False
 
   - name: library genesis
     engine: xpath
@@ -601,7 +591,7 @@ engines:
     content_xpath: //td/a[1][contains(@href,"=author")]/text()
     categories: general, files
     timeout: 7.0
-    disabled: True
+    disabled: False
     shortcut: lg
     about:
       website: https://libgen.rs/
@@ -626,7 +616,7 @@ engines:
     categories: it
     shortcut: lo
     timeout: 5.0
-    disabled: True
+    disabled: False
     about:
       website: https://lobste.rs/
       wikidata_id: Q60762874
@@ -654,7 +644,7 @@ engines:
     content_query: package/description
     page_size: 25
     categories: it
-    disabled: True
+    disabled: False
     timeout: 5.0
     shortcut: npm
     about:
@@ -668,7 +658,7 @@ engines:
   - name: nyaa
     engine: nyaa
     shortcut: nt
-    disabled: True
+    disabled: False
 
   - name: mankier
     engine: json_engine
@@ -739,7 +729,7 @@ engines:
     content_xpath: //li[@class="search-result"]//div[@class="search-snippet-info"]//p[@class="search-snippet"]
     categories: files
     timeout: 4.0
-    disabled: True
+    disabled: False
     shortcut: or
     about:
       website: https://openrepos.net/
@@ -794,7 +784,7 @@ engines:
     engine: qwant
     shortcut: qw
     categories: general
-    disabled: True
+    disabled: False
     additional_tests:
       rosebud: *test_rosebud
 
@@ -832,16 +822,16 @@ engines:
   - name: searchcode code
     engine: searchcode_code
     shortcut: scc
-    disabled: True
+    disabled: False
 
   - name: framalibre
     engine: framalibre
     shortcut: frl
-    disabled: True
+    disabled: False
 
   - name: semantic scholar
     engine: semantic_scholar
-    disabled: True
+    disabled: False
     shortcut: se
     categories: science
     about:
@@ -856,7 +846,7 @@ engines:
     engine: startpage
     shortcut: sp
     timeout: 6.0
-    disabled: True
+    disabled: False
     additional_tests:
       rosebud: *test_rosebud
 
@@ -864,13 +854,13 @@ engines:
     engine: tokyotoshokan
     shortcut: tt
     timeout: 6.0
-    disabled: True
+    disabled: False
 
   - name: solidtorrents
     engine: solidtorrents
     shortcut: solid
     timeout: 3.0
-    disabled: True
+    disabled: False
 
   - name: torrentz
     engine: torrentz
@@ -878,7 +868,6 @@ engines:
     url: https://torrentz2.eu/
     timeout: 3.0
 
-# Requires Tor
   - name: torch
     engine: xpath
     paging: True
@@ -893,13 +882,13 @@ engines:
 
   - name: unsplash
     engine: unsplash
-    disabled: True
+    disabled: False
     shortcut: us
 
   - name: yahoo
     engine: yahoo
     shortcut: yh
-    disabled: True
+    disabled: False
 
   - name: yahoo news
     engine: yahoo_news
@@ -913,7 +902,7 @@ engines:
     engine: yggtorrent
     shortcut: ygg
     url: https://www4.yggtorrent.li/
-    disabled: True
+    disabled: False
     timeout: 4.0
 
   - name: dailymotion
@@ -932,7 +921,7 @@ engines:
     content_query: Snippet
     categories: general
     shortcut: wib
-    disabled: True
+    disabled: False
 
   - name: wikibooks
     engine: mediawiki
@@ -941,7 +930,7 @@ engines:
     base_url: "https://{language}.wikibooks.org/"
     number_of_results: 5
     search_type: text
-    disabled: True
+    disabled: False
     about:
       website: https://www.wikibooks.org/
       wikidata_id: Q367
@@ -953,7 +942,7 @@ engines:
     base_url: "https://{language}.wikinews.org/"
     number_of_results: 5
     search_type: text
-    disabled: True
+    disabled: False
     about:
       website: https://www.wikinews.org/
       wikidata_id: Q964
@@ -965,7 +954,7 @@ engines:
     base_url: "https://{language}.wikiquote.org/"
     number_of_results: 5
     search_type: text
-    disabled: True
+    disabled: False
     additional_tests:
       rosebud: *test_rosebud
     about:
@@ -979,7 +968,7 @@ engines:
     base_url: "https://{language}.wikisource.org/"
     number_of_results: 5
     search_type: text
-    disabled: True
+    disabled: False
     about:
       website: https://www.wikisource.org/
       wikidata_id: Q263
@@ -991,7 +980,7 @@ engines:
     base_url: "https://{language}.wiktionary.org/"
     number_of_results: 5
     search_type: text
-    disabled: True
+    disabled: False
     about:
       website: https://www.wiktionary.org/
       wikidata_id: Q151
@@ -1003,7 +992,7 @@ engines:
     base_url: "https://{language}.wikiversity.org/"
     number_of_results: 5
     search_type: text
-    disabled: True
+    disabled: False
     about:
       website: https://www.wikiversity.org/
       wikidata_id: Q370
@@ -1015,7 +1004,7 @@ engines:
     base_url: "https://{language}.wikivoyage.org/"
     number_of_results: 5
     search_type: text
-    disabled: True
+    disabled: False
     about:
       website: https://www.wikivoyage.org/
       wikidata_id: Q373
@@ -1038,7 +1027,7 @@ engines:
     engine: translated
     shortcut: tl
     timeout: 5.0
-    disabled: True
+    disabled: False
     # You can use without an API key, but you are limited to 1000 words/day
     # See: https://mymemory.translated.net/doc/usagelimits.php
     # api_key: ''
@@ -1046,17 +1035,17 @@ engines:
   - name: 1337x
     engine: 1337x
     shortcut: 1337x
-    disabled: True
+    disabled: False
 
   - name: duden
     engine: duden
     shortcut: du
-    disabled: True
+    disabled: False
 
   - name: seznam
     shortcut: szn
     engine: seznam
-    disabled: True
+    disabled: False
 
   - name: mojeek
     shortcut: mjk
@@ -1070,7 +1059,7 @@ engines:
     suggestion_xpath: /html/body//div[@class="top-info"]/p[@class="top-info spell"]/a
     first_page_num: 0
     page_size: 10
-    disabled: True
+    disabled: False
     about:
       website: https://www.mojeek.com/
       wikidata_id: Q60747299
@@ -1091,7 +1080,7 @@ engines:
     content_query: abstract
     content_html_to_text: True
     categories: general
-    disabled: True
+    disabled: False
     about:
       website: https://whaleslide.com/
       wikidata_id: # No Wikidata page
@@ -1112,7 +1101,7 @@ engines:
     page_size: 12
     categories: general
     timeout: 4.0
-    disabled: True
+    disabled: False
     about:
       website: https://petalsearch.com
       wikidata_id: #
@@ -1124,7 +1113,7 @@ engines:
     shortcut: ask
     engine: xpath
     timeout: 3.0
-    disabled: True
+    disabled: False
     categories: general
     paging: True
     page_size: 10
@@ -1150,7 +1139,7 @@ engines:
     content_xpath: //a[@class="total_dsc"]/div
     first_page_num: 1
     page_size: 10
-    disabled: True
+    disabled: False
     about:
       website: https://www.naver.com/
       wikidata_id: Q485639
@@ -1171,7 +1160,7 @@ engines:
     suggestion_xpath: /html/body/main/div/div[@class="search__suggestions"]/p/a
     first_page_num: 1
     categories: it
-    disabled: True
+    disabled: False
     about:
       website: https://rubygems.org/
       wikidata_id: Q1853420
@@ -1186,7 +1175,7 @@ engines:
     paging: True
     base_url: https://peer.tube/
     categories: videos
-    disabled: True
+    disabled: False
 
   - name: mediathekviewweb
     engine: mediathekviewweb
@@ -1203,7 +1192,7 @@ engines:
     content_xpath: //div[@class="price"]
     #thumbnail_xpath: '//div[@class="product__image-container"]//img/@data-src'
     categories: general
-    disabled: True
+    disabled: False
     about:
       website: https://kaufland.de
       wikidata_id: Q685967
@@ -1217,7 +1206,7 @@ engines:
     base_url: https://rumble.com/
     paging: True
     categories: videos
-    disabled: True
+    disabled: False
 
   - name: wordnik
     engine: wordnik
@@ -1225,14 +1214,14 @@ engines:
     base_url: https://www.wordnik.com/
     categories: general
     timeout: 5.0
-    disabled: True
+    disabled: False
 
   - name: woxikon.de synonyme
     engine: xpath
     shortcut: woxi
     categories: general
     timeout: 5.0
-    disabled: True
+    disabled: False
     search_url: https://synonyme.woxikon.de/synonyme/{query}.php
     url_xpath: //div[@class="upper-synonyms"]/a/@href
     content_xpath: //div[@class="synonyms-list-group"]
@@ -1250,8 +1239,7 @@ engines:
     base_url: https://sjp.pwn.pl/
     categories: general
     timeout: 5.0
-    disabled: True
-
+    disabled: False
 locales:
     en: English
     ar: العَرَبِيَّة (Arabic)
@@ -1285,20 +1273,6 @@ locales:
     pl: Polski (Polish)
     pt: Português (Portuguese)
     pt_BR: Português (Portuguese_Brazil)
-    ro: Română (Romanian)
-    ru: Русский (Russian)
-    sk: Slovenčina (Slovak)
-    sl: Slovenski (Slovene)
-    sr: српски (Serbian)
-    sv: Svenska (Swedish)
-    te: తెలుగు (telugu)
-    ta: தமிழ் (Tamil)
-    tr: Türkçe (Turkish)
-    uk: українська мова (Ukrainian)
-    vi: tiếng việt (Vietnamese)
-    zh: 中文 (Chinese)
-    zh_TW: 國語 (Taiwanese Mandarin)
-
 doi_resolvers :
   oadoi.org: "https://oadoi.org/"
   doi.org: "https://doi.org/"
@@ -1309,5 +1283,4 @@ doi_resolvers :
   sci-hub.st: "https://sci-hub.st/"
   sci-hub.bar: "https://sci-hub.bar/"
   sci-hub.it.nf: "https://sci-hub.it.nf/"
-
 default_doi_resolver: "oadoi.org"
